@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Detection Result</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="page">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="brand">
+
+
+            <div>
+
+                <h1>Retail Theft Detection</h1>
+
+            </div>
+
+        </div>
+
+
+    </header>
+
+
+    <!-- RESULT -->
+
+    <main class="result-main">
+
+        <div class="result-heading">
+
+            <div class="badge">
+                AI ANALYSIS COMPLETE
+            </div>
+
+            <h2>
+                Detection Result
+            </h2>
+
+            <p>
+                AI-generated analysis from the uploaded
+                surveillance video.
+            </p>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        {% if result == "THEFT DETECTED" %}
+
+        <section class="result-status theft">
+
+            <div class="status-symbol">
+                !
+            </div>
+
+            <div>
+
+                <span class="status-label">
+                    SECURITY ALERT
+                </span>
+
+                <h3>
+                    THEFT DETECTED
+                </h3>
+
+
+            </div>
+
+        </section>
+
+        {% else %}
+
+        <section class="result-status normal">
+
+            <div class="status-symbol">
+                ✓
+            </div>
+
+            <div>
+
+                <span class="status-label">
+                    SECURITY STATUS
+                </span>
+
+                <h3>
+                    NORMAL
+                </h3>
+
+                <p>
+                    No shoplifting activity was detected
+                    in the analyzed frames.
+                </p>
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+
+        <!-- FRAME -->
+
+        <section class="frame-card">
+
+            <div class="section-header">
+
+                </div>
+
+            </div>
+
+
+            <div class="image-container">
+
+                <img
+                    src="{{ url_for('output_image', filename=image_file) }}"
+                    alt="AI annotated detection frame"
+                    class="detection-image"
+                >
+
+            </div>
+
+
+
+        </section>
+
+
+        <!-- METRICS -->
+
+        <section class="metrics">
+
+            <div class="metric-card">
+
+                <span>
+                    DETECTION
+                </span>
+
+                <strong>
+                    {{ result }}
+                </strong>
+
+            </div>
+
+
+
+
+        </section>
+
+
+        <!-- BUTTON -->
+
+        <div class="action-area">
+
+            <a href="{{ url_for('index') }}"
+               class="analyze-button">
+
+                ↻ Analyze Another Video
+
+            </a>
+
+        </div>
+
+    </main>
+
+
+
+</div>
+
+</body>
+
+</html>
